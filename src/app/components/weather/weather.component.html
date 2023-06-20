@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="container__date">{{ date }}</div>
+
+  <form [formGroup]="weatherForm">
+    <mat-form-field>
+      <mat-label>Choose the city</mat-label>
+      <mat-select formControlName="city">
+        <mat-option *ngFor="let city of cities" [value]="city.value">
+          {{ city.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <app-weather-info [weatherForm]="this.weatherForm"></app-weather-info>
+</div>

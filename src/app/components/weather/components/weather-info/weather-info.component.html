@@ -1,0 +1,96 @@
+<ng-container *ngIf="weatherInfo">
+  <mat-card class="weather-info__card">
+    <mat-card-content>
+      <div>{{ city }}</div>
+      <div class="row">
+        <div class="col">
+          <h1>
+            <ng-container *ngIf="temperatureName === temperatureNames.CELSIUS">
+              {{ weatherInfo.current.temp_c }}
+              <span>&deg;C</span>
+            </ng-container>
+            <ng-container
+              *ngIf="temperatureName === temperatureNames.FAHRENHEIT"
+            >
+              {{ weatherInfo.current.temp_f }}
+              <span>&deg;F</span>
+            </ng-container>
+          </h1>
+
+          {{ weatherInfo.current.condition.text }}
+        </div>
+        <div class="col">
+          <img [src]="weatherInfo.current.condition.icon" />
+        </div>
+        <div class="col">
+          <form [formGroup]="tempForm">
+            <mat-button-toggle-group
+              formControlName="temperature"
+              [value]="temperatureNames.CELSIUS"
+            >
+              <mat-button-toggle [value]="temperatureNames.CELSIUS"
+                >&deg;C</mat-button-toggle
+              >
+              <mat-button-toggle [value]="temperatureNames.FAHRENHEIT"
+                >&deg;F</mat-button-toggle
+              >
+            </mat-button-toggle-group>
+          </form>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="row">
+    <div class="col">
+      <mat-card class="weather-info__card">
+        <mat-card-content>
+          <div>
+            <span>Feels like</span>
+            <div>
+              <ng-container
+                *ngIf="temperatureName === temperatureNames.CELSIUS"
+              >
+                {{ weatherInfo.current.feelslike_c }}
+                <span>&deg;C</span>
+              </ng-container>
+              <ng-container
+                *ngIf="temperatureName === temperatureNames.FAHRENHEIT"
+              >
+                {{ weatherInfo.current.feelslike_f }}
+                <span>&deg;F</span>
+              </ng-container>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col">
+      <mat-card class="weather-info__card">
+        <mat-card-content>
+          <div>
+            <span>Humidity</span>
+            <div>
+              {{ weatherInfo.current.humidity }}
+              <span>%</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col">
+      <mat-card class="weather-info__card">
+        <mat-card-content>
+          <div>
+            <span>Wind speed </span>
+            <div>
+              {{ weatherInfo.current.wind_kph }}
+              <span>km/h</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</ng-container>
